@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Milk Yield Prediction</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+        }
+        .container { 
+            width: 50%; 
+            margin: auto; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .form-group label {
+            width: 250px;
+            font-weight: bold;
+            text-align: left;
+        }
+        .form-group input {
+            flex: 1;
+            padding: 10px;
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #28a745; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        button:hover { 
+            background: #218838; 
+        }
+        .result { 
+            margin-top: 20px; 
+            font-size: 20px; 
+        }
+        .suggestion { 
+            margin-top: 20px; 
+            font-size: 18px; 
+            color: #555; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Milk Yield and Heat Stress Prediction</h2>
+        <form action="/" method="post">
+            <div class="form-group">
+                <label for="THI">Temperature-Humidity Index (THI):</label>
+                <input type="text" id="THI" name="THI" required>
+            </div>
+
+            <div class="form-group">
+                <label for="RH">Relative Humidity (%):</label>
+                <input type="text" id="RH" name="RH" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Ruminating">Ruminating Time:</label>
+                <input type="text" id="Ruminating" name="Ruminating" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Eating">Eating Time:</label>
+                <input type="text" id="Eating" name="Eating" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Lactation">Lactation Stage:</label>
+                <input type="text" id="Lactation" name="Lactation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="DIM">Days in Milk (DIM):</label>
+                <input type="text" id="DIM" name="DIM" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+            <div class="result">{{ heat_stress_text }}</div>
+            <div class="suggestion"><strong>Suggestions to Improve Milk Yield:</strong> <br>{{ milk_yield_suggestion }}</div>
+            <div class="suggestion"><strong>Suggestions for Heat Stress:</strong> {{ heat_stress_suggestion }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
